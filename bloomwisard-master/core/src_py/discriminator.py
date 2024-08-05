@@ -82,7 +82,7 @@ class Discriminator:
 
             i1 = addr >> 6  # Divide by 64 to find the bitarray id
             i2 = addr & 0x3F  # Obtain remainder to access the bitarray position
-            rank += (self.rams[i]['bitarray'][i1] & (1 << i2)) >> i2
+            rank += (self.rams[i] & (1 << i2)) >> i2
 
         return rank
 
@@ -92,7 +92,7 @@ disc = Discriminator(24,8)
 #Criando data
 data = bitarray(1024)
 
-for i in range(1,len(data), 2):  # Começa do índice 1 e avança de 2 em 2
+for i in range(1,len(data), 2): 
     data[i] = True
 
 print(data)
@@ -100,3 +100,5 @@ print(data)
 treino = Discriminator.train(disc,data)
 
 
+# ranking = Discriminator.rank(disc,data)
+# print(ranking)
